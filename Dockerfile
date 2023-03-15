@@ -14,4 +14,10 @@ RUN pip install /code
 
 COPY ./controller /code/controller
 
+RUN addgroup --system nonrootgorup
+
+RUN  adduser --system nonrootuser --ingroup nonrootgorup
+
+USER nonrootuser
+
 CMD ["uvicorn", "controller.controller:app", "--host", "0.0.0.0", "--port", "80"]
